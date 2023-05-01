@@ -1,0 +1,8 @@
+name: EssentialsAPI
+version: ${project.version}
+main: dev.littlebigowl.api.EssentialsAPI
+api-version: 1.19
+authors: [ LittleBigOwl ]
+description: A custom API that my other plugins use.
+website: littlebigowl.dev
+prefix: Essentials
