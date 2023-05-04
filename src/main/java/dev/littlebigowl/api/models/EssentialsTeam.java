@@ -21,7 +21,7 @@ public class EssentialsTeam {
 
     public final ArrayList<Player> players = new ArrayList<>();
 
-    public EssentialsTeam(EssentialsAPI plugin, String id, Color color, String prefix, String name, int playtime, int maxHomes) {        
+    public EssentialsTeam(EssentialsAPI plugin, String id, String name, Color color, String prefix, int playtime, int maxHomes) {        
         this.plugin = plugin;
         
         this.id = id;

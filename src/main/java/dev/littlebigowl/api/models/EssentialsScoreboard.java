@@ -86,7 +86,7 @@ public class EssentialsScoreboard {
     }
 
     public EssentialsTeam getEssentialsTeam(Player player) {
-        
+
         for(Team team : this.scoreboard.getTeams()) {
             EssentialsTeam essentialsTeam = this.teams.get(team.getName());
 
@@ -147,9 +147,9 @@ public class EssentialsScoreboard {
                 this.plugin.scoreboard.addTeam(new EssentialsTeam(
                     this.plugin,
                     rank.getString("id"),
+                    rank.getString("name"),
                     Color.decode("#" + rank.getString("color")),
                     rank.getString("prefix"),
-                    teamName,
                     Integer.parseInt(rank.getString("playtime")),
                     Integer.parseInt(rank.getString("maxHomes"))
                 ));

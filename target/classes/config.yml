@@ -5,10 +5,27 @@ database:
   user: [Username]
   password: [UserPassword]
 
+# Max amount of teleportation requests per player. Set to -1 for an infinite amount
+maxTeleports: 5
+
+# Your discord bot token obtainable via the discord dev portal
+token: [token]
+
+# The discord webhook URL that the bot will use to communicate player activity, it's avatar can be any image on the internet
+webhookURL: [webhookURL]
+webhookAvatarURL: [avatarURL]
+
+# The discord channel id that the bot will get messages from to send to the minecraft server
+channel: [ChannelID]
+
+# The bot's status. {playerCount} will be replaced with actual server player count, same with {maxPlayers}
+status: "{playerCount} / {maxPlayers}"
+
 # Rank configuration for the server
 ranks:
   rankName1: # Enter as many ranks as you want (playtime is in minutes)
     id: [RankID] # This ID will determine the rank order in the tablist
+    name: [RankName]
     color: [RankColor]
     prefix: [RankPrefix]
     playtime: 0 # If playtime is set to -1 the rank will be unobtainable through playtime
@@ -16,6 +33,7 @@ ranks:
   
   rankName2:
     id: [RankID]
+    name: [RankName]
     color: [RankColor]
     prefix: [RankPrefix]
     playtime: 0
