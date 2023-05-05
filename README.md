@@ -8,8 +8,6 @@ A custom API for the Essentials series of plugins
 - `HomeEssentials`
 - `TravelEssentials`
 - `ScoreboardEssentials`
-
-## Upcoming
 - `DiscordEssentials`
 
 ## Authors
