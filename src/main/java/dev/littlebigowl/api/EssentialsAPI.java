@@ -8,7 +8,7 @@ import dev.littlebigowl.api.models.EssentialsScoreboard;
 import dev.littlebigowl.api.models.EssentialsTeleports;
 
 public class EssentialsAPI extends JavaPlugin {
-    
+
     public final EssentialsDatabase database = EssentialsDatabase.init(this);
     public final EssentialsScoreboard scoreboard = EssentialsScoreboard.init(this);
     public final EssentialsTeleports teleports = EssentialsTeleports.init(this);
