@@ -28,7 +28,7 @@ ranks:
     name: [RankName]
     color: [RankColor]
     prefix: [RankPrefix]
-    playtime: 0 # If playtime is set to -1 the rank will be unobtainable through playtime
+    playtime: 0 # If playtime is set to -1 the rank obtaiable via OP
     maxHomes: 0 # If maxHomes is set to -1 the max amount of homes will be infinite
   
   rankName2:

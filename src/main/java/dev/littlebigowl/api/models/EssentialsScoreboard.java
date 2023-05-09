@@ -49,33 +49,29 @@ public class EssentialsScoreboard {
     }
 
     public void setScores(Player player) {
-        Scoreboard scoreboard = player.getScoreboard();
 
-        Objective playtime;
-        Objective health;
+        Objective playtime = this.scoreboard.getObjective("playtime");
+        Objective health = this.scoreboard.getObjective("health");
 
-        if(scoreboard == null) {
-            scoreboard = this.plugin.getServer().getScoreboardManager().getNewScoreboard();
-
-            playtime = scoreboard.registerNewObjective("playtime", Criteria.create("PLAYTIME"), "playtime");
-            health = scoreboard.registerNewObjective("health", Criteria.HEALTH, Colors.FAILURE.getChatColor() + "❤");
-
+        if(playtime == null) {
+            playtime = this.scoreboard.registerNewObjective("playtime", Criteria.create("PLAYTIME"), "playtime");
             playtime.setDisplaySlot(DisplaySlot.PLAYER_LIST);
-            health.setDisplaySlot(DisplaySlot.BELOW_NAME);
-        } else {
-            playtime = scoreboard.getObjective("playtime");
-            health = scoreboard.getObjective("health");
         }
 
-        playtime.getScore(player.getName()).setScore(EssentialsScoreboard.getHourPlaytime(player));
+        if(health == null) {
+            health = this.scoreboard.registerNewObjective("health", Criteria.HEALTH, Colors.FAILURE.getChatColor() + "❤");
+            health.setDisplaySlot(DisplaySlot.BELOW_NAME);
+        }
+
+        playtime.getScore(player.getName()).setScore(EssentialsScoreboard.getPlaytime(player));
     }
 
     public void addTeam(EssentialsTeam team) {
-        boolean existing = (scoreboard.getTeam(team.getId()) != null);
+        boolean existing = (this.scoreboard.getTeam(team.getId()) != null);
         if(existing) {
-            scoreboard.getTeam(team.getId()).unregister();
+            this.scoreboard.getTeam(team.getId()).unregister();
         }
-        scoreboard.registerNewTeam(team.getId());
+        this.scoreboard.registerNewTeam(team.getId());
         
         this.teams.put(team.getId(), team);
         plugin.getLogger().info("Registered new rank : " + team.getName());
@@ -87,11 +83,10 @@ public class EssentialsScoreboard {
 
     public EssentialsTeam getEssentialsTeam(Player player) {
 
-        for(Team team : this.scoreboard.getTeams()) {
-            EssentialsTeam essentialsTeam = this.teams.get(team.getName());
+        for(EssentialsTeam team : this.getTeams()) {
 
-            if(essentialsTeam.players.contains(player)) {
-                return essentialsTeam;
+            if(team.has(player)) {
+                return team;
             }
         }
         
@@ -103,9 +98,8 @@ public class EssentialsScoreboard {
     }
 
     public Team getTeam(Player player) {
-        String teamId = this.getEssentialsTeam(player).getId();
         for(Team team : this.scoreboard.getTeams()) {
-            if(team.getName().equals(teamId)) {
+            if(team.hasEntry(player.getName())) {
                 return team;
             }
         }
@@ -127,14 +121,26 @@ public class EssentialsScoreboard {
                 distance = cdistance;
             }
         }
+
         int teamPlaytime = playtimes.get(idx);
 
         for(EssentialsTeam team : this.getTeams()) {
-            if(team.getPlaytime() == teamPlaytime) {
+            if(team.getPlaytime() == teamPlaytime && !team.has(player) && !player.isOp()) {
+                EssentialsTeam playerTeam = this.getEssentialsTeam(player);
+                
+                if(playerTeam != null) playerTeam.removePlayer(player);
+            }
+            
+            if(team.getPlaytime() == teamPlaytime && !player.isOp()) {
+                team.addPlayer(player);
+                return team;
+
+            } else if(player.isOp() && team.getPlaytime() == -1){
                 team.addPlayer(player);
                 return team;
             }
         }
+        
         return null;
     }
 
@@ -157,6 +163,10 @@ public class EssentialsScoreboard {
                 this.plugin.getLogger().severe("Couldn't register rank : " + teamName + ". " + e.getMessage().replace("\n", ". ").replace("\r", ". "));
             }
         }
+    }
+
+    public void setScoreboard(Player player) {
+        player.setScoreboard(this.scoreboard);
     }
 
 }

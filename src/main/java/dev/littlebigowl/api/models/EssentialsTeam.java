@@ -34,12 +34,17 @@ public class EssentialsTeam {
 
     public void addPlayer(Player player) {
         players.add(player);
-        this.plugin.scoreboard.getTeam(player).addEntry(player.getName());
+        this.plugin.scoreboard.getTeam(this.getId()).addEntry(player.getName());
 
         player.setPlayerListName(
             "[" + ChatColor.of(this.color) + this.prefix + ChatColor.RESET +"] " + 
             ChatColor.of(this.color) + player.getName() + ChatColor.RESET
         );
+    }
+
+    public void removePlayer(Player player) {
+        players.remove(player);
+        this.plugin.scoreboard.getTeam(this.getId()).removeEntry(player.getName());
     }
 
     public boolean has(Player player) {
