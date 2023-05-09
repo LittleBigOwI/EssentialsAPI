@@ -6,8 +6,8 @@ import net.md_5.bungee.api.ChatColor;
 
 public enum Colors {
     
-    SUCCESS(Color.decode("#6fed66")),
-    FAILURE(Color.decode("#ed6666")),
+    SUCCESS(Color.decode("#54fb54")),
+    FAILURE(Color.decode("#fb5454")),
     WARNING(Color.decode("#f2e055")),
     
     INFO(Color.decode("#66bced")),

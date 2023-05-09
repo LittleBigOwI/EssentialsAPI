@@ -21,6 +21,9 @@ channel: [ChannelID]
 # The bot's status. {playerCount} will be replaced with actual server player count, same with {maxPlayers}
 status: "{playerCount} / {maxPlayers}"
 
+# The minimum area size to create one
+minimumArea: 225
+
 # Rank configuration for the server
 ranks:
   rankName1: # Enter as many ranks as you want (playtime is in minutes)
