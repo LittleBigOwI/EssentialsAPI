@@ -1,6 +1,0 @@
-target/
-.vscode/
-.editorconfig
-
-*.jar
-*.class
