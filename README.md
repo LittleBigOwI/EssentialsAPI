@@ -9,6 +9,7 @@ A custom API for the Essentials series of plugins
 - `TravelEssentials`
 - `ScoreboardEssentials`
 - `DiscordEssentials`
+- `AreaEssentials`
 
 ## Authors
 
