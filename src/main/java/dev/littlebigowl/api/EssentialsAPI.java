@@ -6,6 +6,7 @@ import dev.littlebigowl.api.models.EssentialsDatabase;
 import dev.littlebigowl.api.models.EssentialsDiscord;
 import dev.littlebigowl.api.models.EssentialsScoreboard;
 import dev.littlebigowl.api.models.EssentialsTeleports;
+import dev.littlebigowl.api.models.EssentialsAreas;
 
 public class EssentialsAPI extends JavaPlugin {
 
@@ -13,6 +14,7 @@ public class EssentialsAPI extends JavaPlugin {
     public final EssentialsScoreboard scoreboard = EssentialsScoreboard.init(this);
     public final EssentialsTeleports teleports = EssentialsTeleports.init(this);
     public final EssentialsDiscord discord = EssentialsDiscord.init(this);
+    public final EssentialsAreas areas = EssentialsAreas.init(this);
 
     @Override
     public void onEnable() {

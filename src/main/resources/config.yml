@@ -22,7 +22,9 @@ channel: [ChannelID]
 status: "{playerCount} / {maxPlayers}"
 
 # The minimum area size to create one
-minimumArea: 225
+minimumArea: 256
+minAreaWidthX: 16
+minAreaWidthY: 16
 
 # Rank configuration for the server
 ranks:

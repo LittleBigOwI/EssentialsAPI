@@ -11,7 +11,7 @@ public enum Colors {
     WARNING(Color.decode("#f2e055")),
     
     INFO(Color.decode("#66bced")),
-    MAJOR(Color.decode("#463be3")),
+    MAJOR(Color.decode("#6c63eb")),
     MINOR(Color.decode("#858585")),
 
     DISCORD(Color.decode("#5865f2"));
