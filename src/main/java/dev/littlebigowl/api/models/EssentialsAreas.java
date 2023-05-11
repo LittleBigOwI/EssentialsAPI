@@ -8,10 +8,16 @@ public class EssentialsAreas {
     private int minAreaWidthX;
     private int minAreaWidthY;
 
-    private EssentialsAreas(int minAreaSurface, int minAreaWidthX, int minAreaWidthY) {
+    private int claimAmount;
+    private int claimInterval;
+
+    private EssentialsAreas(int minAreaSurface, int minAreaWidthX, int minAreaWidthY, int claimAmount, int claimInterval) {
         this.minAreaSurface = minAreaSurface;
         this.minAreaWidthX = minAreaWidthX;
         this.minAreaWidthY = minAreaWidthY;
+
+        this.claimAmount = claimAmount;
+        this.claimInterval = claimInterval;
     }
 
     public static EssentialsAreas init(EssentialsAPI plugin) {
@@ -19,7 +25,10 @@ public class EssentialsAreas {
         int minAreaWidthX = plugin.getConfig().getInt("minAreaWidthX");
         int minAreaWidthY = plugin.getConfig().getInt("minAreaWidthY");
 
-        return new EssentialsAreas(minAreaSurface, minAreaWidthX, minAreaWidthY);
+        int claimAmount = plugin.getConfig().getInt("claimAmount");
+        int claimInterval = plugin.getConfig().getInt("claimInterval");
+
+        return new EssentialsAreas(minAreaSurface, minAreaWidthX, minAreaWidthY, claimAmount, claimInterval);
     }
 
     public int getMinAreaSurface() {
@@ -32,5 +41,13 @@ public class EssentialsAreas {
 
     public int getMinAreaWidthY() {
         return this.minAreaWidthY;
+    }
+
+    public int getPassiveClaimAmount() {
+        return this.claimAmount;
+    }
+
+    public int getPassiveClaimInterval() {
+        return this.claimInterval;
     }
 }

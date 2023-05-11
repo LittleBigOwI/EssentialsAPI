@@ -16,12 +16,13 @@ public class EssentialsTeam {
     private String name;
     private int playtime;
     private int maxHomes;
+    private int claimBonus;
 
     private EssentialsAPI plugin;
 
     public final ArrayList<Player> players = new ArrayList<>();
 
-    public EssentialsTeam(EssentialsAPI plugin, String id, String name, Color color, String prefix, int playtime, int maxHomes) {        
+    public EssentialsTeam(EssentialsAPI plugin, String id, String name, Color color, String prefix, int playtime, int maxHomes, int claimBonus) {        
         this.plugin = plugin;
         
         this.id = id;
@@ -30,6 +31,7 @@ public class EssentialsTeam {
         this.name = name;
         this.playtime = playtime;
         this.maxHomes = maxHomes;
+        this.claimBonus = claimBonus;
     }
 
     public void addPlayer(Player player) {
@@ -73,6 +75,10 @@ public class EssentialsTeam {
 
     public int getMaxHomes() {
         return this.maxHomes;
+    }
+
+    public int getClaimBonus() {
+        return this.claimBonus;
     }
 
 }

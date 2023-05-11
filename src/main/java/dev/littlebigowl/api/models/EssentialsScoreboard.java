@@ -157,7 +157,8 @@ public class EssentialsScoreboard {
                     Color.decode("#" + rank.getString("color")),
                     rank.getString("prefix"),
                     Integer.parseInt(rank.getString("playtime")),
-                    Integer.parseInt(rank.getString("maxHomes"))
+                    Integer.parseInt(rank.getString("maxHomes")),
+                    Integer.parseInt(rank.getString("claimBonus"))
                 ));
             } catch (NumberFormatException e) {
                 this.plugin.getLogger().severe("Couldn't register rank : " + teamName + ". " + e.getMessage().replace("\n", ". ").replace("\r", ". "));

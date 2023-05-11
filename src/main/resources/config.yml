@@ -26,6 +26,10 @@ minimumArea: 256
 minAreaWidthX: 16
 minAreaWidthY: 16
 
+# Passive claim blocks earnings, interval is in minutes
+claimAmount: 75
+claimInterval: 30
+
 # Rank configuration for the server
 ranks:
   rankName1: # Enter as many ranks as you want (playtime is in minutes)
