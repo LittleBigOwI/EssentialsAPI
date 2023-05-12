@@ -18,15 +18,18 @@ webhookAvatarURL: [avatarURL]
 # The discord channel id that the bot will get messages from to send to the minecraft server
 channel: [ChannelID]
 
+# The role that will be attributed to memebers that link their account
+linkedRole: [linkedRokeID]
+
 # The bot's status. {playerCount} will be replaced with actual server player count, same with {maxPlayers}
 status: "{playerCount} / {maxPlayers}"
 
-# The minimum area size to create one
+# The minimum area size to create one, by default a chunk
 minimumArea: 256
 minAreaWidthX: 16
 minAreaWidthY: 16
 
-# Passive claim blocks earnings, interval is in minutes
+# Passive claim blocks earnings, interval is in minutes, by default 77 every 30 minutes
 claimAmount: 75
 claimInterval: 30
 
@@ -34,11 +37,13 @@ claimInterval: 30
 ranks:
   rankName1: # Enter as many ranks as you want (playtime is in minutes)
     id: [RankID] # This ID will determine the rank order in the tablist
-    name: [RankName]
-    color: [RankColor]
-    prefix: [RankPrefix]
+    name: [RankName] # Rank display names
+    color: [RankColor] # Rank color
+    prefix: [RankPrefix] # rank prefix
     playtime: 0 # If playtime is set to -1 the rank obtaiable via OP
     maxHomes: 0 # If maxHomes is set to -1 the max amount of homes will be infinite
+    claimBonus: 0 # Amount of claim blocks given to player when obtaining this rank
+    discordRole: [roleID] # Discord role that corresponds to rank
   
   rankName2:
     id: [RankID]
@@ -46,4 +51,6 @@ ranks:
     color: [RankColor]
     prefix: [RankPrefix]
     playtime: 0
-    maxHomes: 0 
+    maxHomes: 0
+    claimBonus: 0
+    discordRole: [roleID]
