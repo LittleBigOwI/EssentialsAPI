@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -33,6 +34,10 @@ public class EssentialsScoreboard {
     }
 
     public static int getPlaytime(Player player) {
+        return Math.round(player.getStatistic(Statistic.PLAY_ONE_MINUTE)/1200);
+    }
+
+    public static int getPlaytime(OfflinePlayer player) {
         return Math.round(player.getStatistic(Statistic.PLAY_ONE_MINUTE)/1200);
     }
 
@@ -154,6 +159,7 @@ public class EssentialsScoreboard {
                     this.plugin,
                     rank.getString("id"),
                     rank.getString("name"),
+                    rank.getString("discordRole"),
                     Color.decode("#" + rank.getString("color")),
                     rank.getString("prefix"),
                     Integer.parseInt(rank.getString("playtime")),
@@ -168,6 +174,13 @@ public class EssentialsScoreboard {
 
     public void setScoreboard(Player player) {
         player.setScoreboard(this.scoreboard);
+    }
+
+    public ArrayList<EssentialsTeam> getEssentialsTeams() {
+        ArrayList<EssentialsTeam> teams = new ArrayList<>();
+        this.teams.values().forEach(team -> teams.add(team));
+        
+        return teams;
     }
 
 }

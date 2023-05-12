@@ -9,13 +9,15 @@ public class EssentialsDiscord {
     private String webhookAvatarURL;
     private String channel;
     private String status;
+    private String linkedRole;
 
-    private EssentialsDiscord(String token, String webhookURL, String webhookAvatarURL, String channel, String status) {
+    private EssentialsDiscord(String token, String webhookURL, String webhookAvatarURL, String channel, String status, String linkedRole) {
         this.token = token;
         this.webhookURL = webhookURL;
         this.webhookAvatarURL = webhookAvatarURL;
         this.channel = channel;
         this.status = status;
+        this.linkedRole = linkedRole;
     }
 
     public static EssentialsDiscord init(EssentialsAPI plugin) {
@@ -24,7 +26,8 @@ public class EssentialsDiscord {
             plugin.getConfig().getString("webhookURL"),
             plugin.getConfig().getString("webhookAvatarURL"),
             plugin.getConfig().getString("channel"),
-            plugin.getConfig().getString("status")
+            plugin.getConfig().getString("status"),
+            plugin.getConfig().getString("linkedRole")
         );
     }
 
@@ -46,6 +49,10 @@ public class EssentialsDiscord {
 
     public String getStatus() {
         return this.status;
+    }
+
+    public String getLinkedRole() {
+        return this.linkedRole;
     }
 
 }

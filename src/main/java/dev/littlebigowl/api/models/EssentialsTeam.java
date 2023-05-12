@@ -14,6 +14,7 @@ public class EssentialsTeam {
     private Color color;
     private String prefix;
     private String name;
+    private String roleId;
     private int playtime;
     private int maxHomes;
     private int claimBonus;
@@ -22,12 +23,13 @@ public class EssentialsTeam {
 
     public final ArrayList<Player> players = new ArrayList<>();
 
-    public EssentialsTeam(EssentialsAPI plugin, String id, String name, Color color, String prefix, int playtime, int maxHomes, int claimBonus) {        
+    public EssentialsTeam(EssentialsAPI plugin, String id, String name, String roleId, Color color, String prefix, int playtime, int maxHomes, int claimBonus) {        
         this.plugin = plugin;
         
         this.id = id;
         this.color = color;
         this.prefix = prefix;
+        this.roleId = roleId;
         this.name = name;
         this.playtime = playtime;
         this.maxHomes = maxHomes;
@@ -67,6 +69,10 @@ public class EssentialsTeam {
 
     public String getName() {
         return this.name;
+    }
+
+    public String getRoleId() {
+        return this.roleId;
     }
 
     public int getPlaytime() {

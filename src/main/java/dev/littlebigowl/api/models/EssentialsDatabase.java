@@ -61,19 +61,19 @@ public class EssentialsDatabase {
 
     public boolean create(String sql) throws SQLException {
         this.resetConnection();
-        logger.info("Executed create statement.");
+        logger.warning("Executed create statement.");
         return this.connection.createStatement().execute(sql);
     }
 
     public int update(String sql) throws SQLException {
         this.resetConnection();
-        logger.info("Executed update statement.");
+        logger.warning("Executed update statement.");
         return this.connection.createStatement().executeUpdate(sql);
     }
 
     public ResultSet fetch(String sql) throws SQLException {
         this.resetConnection();
-        logger.info("Executed fetch statement.");
+        logger.warning("Executed fetch statement.");
         return this.connection.prepareStatement(sql).executeQuery();
     }
 
