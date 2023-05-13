@@ -5,7 +5,7 @@ database:
   user: [Username]
   password: [UserPassword]
 
-# Tablist title & footer
+# Tablist footer & footer
 header: [header]
 footer: [footer]
 

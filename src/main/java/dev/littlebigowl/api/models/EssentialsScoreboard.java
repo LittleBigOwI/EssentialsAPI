@@ -64,6 +64,11 @@ public class EssentialsScoreboard {
         return new ArrayList<EssentialsTeam>(this.teams.values());
     }
 
+    private double round(double value, int precision) {
+        int scale = (int) Math.pow(10, precision);
+        return (double) Math.round(value * scale) / scale;
+    }
+
     private double getTPS() {
         Object server = null;
         Field tps = null;
@@ -238,8 +243,8 @@ public class EssentialsScoreboard {
         player.setPlayerListFooter(ChatColor.translateAlternateColorCodes('&',
             this.footer
             .replace("{playerPing}", "" + Math.round(player.getPing()))
-            .replace("{serverMSPT}", "" + this.getMSPT())
-            .replace("{serverTPS}", "" + this.getTPS())
+            .replace("{serverMSPT}", "" + this.round(this.getMSPT(), 1))
+            .replace("{serverTPS}", "" + this.round(this.getTPS(), 1))
         ));
     }
 
