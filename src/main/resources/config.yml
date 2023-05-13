@@ -5,6 +5,10 @@ database:
   user: [Username]
   password: [UserPassword]
 
+# Tablist title & footer
+header: [header]
+footer: [footer]
+
 # Max amount of teleportation requests per player. Set to -1 for an infinite amount
 maxTeleports: 5
 

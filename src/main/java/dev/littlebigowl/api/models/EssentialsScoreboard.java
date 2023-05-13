@@ -1,11 +1,16 @@
 package dev.littlebigowl.api.models;
 
 import java.awt.Color;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Server;
 import org.bukkit.Statistic;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -17,20 +22,30 @@ import org.bukkit.scoreboard.Team;
 
 import dev.littlebigowl.api.EssentialsAPI;
 import dev.littlebigowl.api.constants.Colors;
+import net.md_5.bungee.api.ChatColor;
 
 public class EssentialsScoreboard {
+
+    private String header;
+    private String footer;
 
     private Scoreboard scoreboard;
     private EssentialsAPI plugin;
 
     private HashMap<String, EssentialsTeam> teams = new HashMap<>();
 
-    private EssentialsScoreboard(EssentialsAPI plugin) {
+    private EssentialsScoreboard(EssentialsAPI plugin, String header, String footer) {
+        this.header = header;
+        this.footer = footer;
+        
         this.plugin = plugin;
     }
 
     public static EssentialsScoreboard init(EssentialsAPI plugin) {
-        return new EssentialsScoreboard(plugin);
+        String header = plugin.getConfig().getString("header");
+        String footer = plugin.getConfig().getString("footer");
+
+        return new EssentialsScoreboard(plugin, header, footer);
     }
 
     public static int getPlaytime(Player player) {
@@ -47,6 +62,36 @@ public class EssentialsScoreboard {
 
     private ArrayList<EssentialsTeam> getTeams() {
         return new ArrayList<EssentialsTeam>(this.teams.values());
+    }
+
+    private double getTPS() {
+        Object server = null;
+        Field tps = null;
+        try {
+            if (server == null) {
+                Server mc = Bukkit.getServer();
+
+                Field consoleField = mc.getClass().getDeclaredField("console");
+                consoleField.setAccessible(true);
+                server = consoleField.get(mc);
+            }
+            if (tps == null) {
+                tps = server.getClass().getSuperclass().getDeclaredField("recentTps");
+                tps.setAccessible(true);
+            }
+            
+            double[] values = (double[]) tps.get(server);
+            return values[0];
+
+        } catch (IllegalAccessException | NoSuchFieldException ignored) {
+            return 20;
+        }
+    }
+
+    private float getMSPT() {
+        BigDecimal bd = BigDecimal.valueOf(this.getTPS());
+        bd = bd.setScale(1, RoundingMode.HALF_UP);
+        return bd.floatValue();
     }
 
     public void createNewScoreboard() {
@@ -181,6 +226,21 @@ public class EssentialsScoreboard {
         this.teams.values().forEach(team -> teams.add(team));
         
         return teams;
+    }
+
+    public void setTitles(Player player) {
+        player.setPlayerListHeader(ChatColor.translateAlternateColorCodes('&',
+            this.header
+            .replace("{playerCount}", "" + Bukkit.getOnlinePlayers().size())
+            .replace("{maxPlayers}", "" + Bukkit.getMaxPlayers())
+        ));
+        
+        player.setPlayerListFooter(ChatColor.translateAlternateColorCodes('&',
+            this.footer
+            .replace("{playerPing}", "" + Math.round(player.getPing()))
+            .replace("{serverMSPT}", "" + this.getMSPT())
+            .replace("{serverTPS}", "" + this.getTPS())
+        ));
     }
 
 }
