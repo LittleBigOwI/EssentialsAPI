@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -164,7 +165,11 @@ public class EssentialsScoreboard {
 
     public EssentialsTeam setTeam(Player player) {
         ArrayList<Integer> playtimes = new ArrayList<>();
-        this.getTeams().forEach(team -> playtimes.add(team.getPlaytime()));
+        this.getTeams().forEach(team -> {
+            playtimes.add(team.getPlaytime());
+        });
+
+        Collections.sort(playtimes);
 
         int playerPlaytime = EssentialsScoreboard.getPlaytime(player);
         int distance = Math.abs(playtimes.get(0) - playerPlaytime);
