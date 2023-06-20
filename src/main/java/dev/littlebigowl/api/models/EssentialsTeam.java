@@ -41,8 +41,8 @@ public class EssentialsTeam {
         this.plugin.scoreboard.getTeam(this.getId()).addEntry(player.getName());
 
         player.setPlayerListName(
-            "[" + ChatColor.of(this.color) + this.prefix + ChatColor.RESET +"] " + 
-            ChatColor.of(this.color) + player.getName() + ChatColor.RESET
+            ChatColor.WHITE + "[" + ChatColor.of(this.color) + this.prefix + ChatColor.WHITE +"] " + 
+            ChatColor.of(this.color) + player.getName() + ChatColor.WHITE
         );
     }
 

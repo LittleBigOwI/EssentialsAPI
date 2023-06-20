@@ -127,7 +127,9 @@ public class EssentialsScoreboard {
         if(existing) {
             this.scoreboard.getTeam(team.getId()).unregister();
         }
-        this.scoreboard.registerNewTeam(team.getId());
+        
+        Team spigotTeam = this.scoreboard.registerNewTeam(team.getId());
+        spigotTeam.setPrefix(ChatColor.WHITE + "[" + ChatColor.of(team.getColor()) + team.getPrefix() + ChatColor.WHITE + "] " + ChatColor.of(team.getColor()));
         
         this.teams.put(team.getId(), team);
         plugin.getLogger().info("Registered new rank : " + team.getName());

@@ -61,19 +61,34 @@ public class EssentialsDatabase {
 
     public boolean create(String sql) throws SQLException {
         this.resetConnection();
-        logger.warning("Executed create statement [" + sql + "].");
+
+        String trimmed = sql;
+        trimmed = trimmed.substring(0, Math.min(trimmed.length(), 50));
+        trimmed = trimmed + "...";
+
+        logger.warning("Executed create statement [" + trimmed + "].");
         return this.connection.createStatement().execute(sql);
     }
 
     public int update(String sql) throws SQLException {
         this.resetConnection();
-        logger.warning("Executed update statement [" + sql + "].");
+
+        String trimmed = sql;
+        trimmed = trimmed.substring(0, Math.min(trimmed.length(), 50));
+        trimmed = trimmed + "...";
+
+        logger.warning("Executed update statement [" + trimmed + "].");
         return this.connection.createStatement().executeUpdate(sql);
     }
 
     public ResultSet fetch(String sql) throws SQLException {
         this.resetConnection();
-        logger.warning("Executed fetch statement [" + sql + "].");
+
+        String trimmed = sql;
+        trimmed = trimmed.substring(0, Math.min(trimmed.length(), 50));
+        trimmed = trimmed + "...";
+
+        logger.warning("Executed fetch statement [" + trimmed + "].");
         return this.connection.prepareStatement(sql).executeQuery();
     }
 
