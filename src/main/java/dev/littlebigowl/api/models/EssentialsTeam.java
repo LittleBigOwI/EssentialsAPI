@@ -18,6 +18,7 @@ public class EssentialsTeam {
     private int playtime;
     private int maxHomes;
     private int claimBonus;
+    private ArrayList<EssentialsPermission> permissions = new ArrayList<>();
 
     private EssentialsAPI plugin;
 
@@ -34,6 +35,16 @@ public class EssentialsTeam {
         this.playtime = playtime;
         this.maxHomes = maxHomes;
         this.claimBonus = claimBonus;
+    }
+
+    public void addPermission(EssentialsPermission permission) {
+        this.permissions.add(permission);
+    }
+
+    public void setPermissions(Player player) {
+        for(EssentialsPermission permission : this.permissions) {
+            EssentialsPermission.givePermission(player, permission);
+        }
     }
 
     public void addPlayer(Player player) {

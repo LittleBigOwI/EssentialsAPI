@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.littlebigowl.api.models.EssentialsDatabase;
 import dev.littlebigowl.api.models.EssentialsDiscord;
+import dev.littlebigowl.api.models.EssentialsPermission;
 import dev.littlebigowl.api.models.EssentialsScoreboard;
 import dev.littlebigowl.api.models.EssentialsTeleports;
 import dev.littlebigowl.api.models.EssentialsAreas;
@@ -18,7 +19,8 @@ public class EssentialsAPI extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        
+        EssentialsPermission.init(this);
+
         scoreboard.createNewScoreboard();
         scoreboard.registerTeams();
 

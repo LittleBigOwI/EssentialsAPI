@@ -212,7 +212,7 @@ public class EssentialsScoreboard {
             ConfigurationSection rank = this.plugin.getConfig().getConfigurationSection("ranks." + teamName);
             
             try {
-                this.plugin.scoreboard.addTeam(new EssentialsTeam(
+                EssentialsTeam team = new EssentialsTeam(
                     this.plugin,
                     rank.getString("id"),
                     rank.getString("name"),
@@ -222,7 +222,13 @@ public class EssentialsScoreboard {
                     Integer.parseInt(rank.getString("playtime")),
                     Integer.parseInt(rank.getString("maxHomes")),
                     Integer.parseInt(rank.getString("claimBonus"))
-                ));
+                );
+
+                for(String permission : rank.getStringList("permissions")) {
+                    team.addPermission(new EssentialsPermission(permission, true));
+                }
+
+                this.plugin.scoreboard.addTeam(team);
             } catch (NumberFormatException e) {
                 this.plugin.getLogger().severe("Couldn't register rank : " + teamName + ". " + e.getMessage().replace("\n", ". ").replace("\r", ". "));
             }
