@@ -2,9 +2,9 @@ package dev.littlebigowl.api.models;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 
@@ -53,12 +53,29 @@ public class EssentialsPermission {
         player.updateCommands();
     }
 
-    public static Iterator<UUID> getVanished() {
-        return vanished.iterator();
-    }
-
     public static boolean isVanished(Player player) {
         return vanished.contains(player.getUniqueId());
+    }
+
+    public static void addVanished(Player player) {
+        vanished.add(player.getUniqueId());
+    }
+
+    public static void removeVanished(Player player) {
+        vanished.remove(player.getUniqueId());
+    }
+
+    public static HashSet<Player> getVanishedPlayers() {
+        HashSet<Player> vanishedPlayers = new HashSet<>();
+        for(UUID vanishedUuid : vanished) {
+            Player player = Bukkit.getPlayer(vanishedUuid);
+
+            if(player != null) {
+                vanishedPlayers.add(player);
+            }
+        }
+
+        return vanishedPlayers;
     }
 
     public String getNode() {
