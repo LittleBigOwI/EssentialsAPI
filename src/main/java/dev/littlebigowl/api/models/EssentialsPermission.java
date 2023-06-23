@@ -1,6 +1,8 @@
 package dev.littlebigowl.api.models;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.UUID;
 
 import org.bukkit.entity.Player;
@@ -14,6 +16,7 @@ public class EssentialsPermission {
     private boolean value;
 
     private static EssentialsAPI api;
+    private static HashSet<UUID> vanished = new HashSet<>();
     private static HashMap<UUID, PermissionAttachment> permissions = new HashMap<>();
 
     public EssentialsPermission(String node, boolean value) {
@@ -30,10 +33,10 @@ public class EssentialsPermission {
 
         if(attachment != null) {
             for(String node : attachment.getPermissions().keySet()) {
-                attachment.setPermission(node, false);
+                attachment.unsetPermission(node);
             }
         }
-
+        permissions.remove(player.getUniqueId());
         player.updateCommands();
     }
 
@@ -48,6 +51,14 @@ public class EssentialsPermission {
         attachment.setPermission(permission.getNode(), permission.getValue());
         permissions.put(player.getUniqueId(), attachment);
         player.updateCommands();
+    }
+
+    public static Iterator<UUID> getVanished() {
+        return vanished.iterator();
+    }
+
+    public static boolean isVanished(Player player) {
+        return vanished.contains(player.getUniqueId());
     }
 
     public String getNode() {
