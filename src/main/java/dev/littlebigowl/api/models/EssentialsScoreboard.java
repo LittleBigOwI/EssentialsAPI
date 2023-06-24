@@ -249,7 +249,7 @@ public class EssentialsScoreboard {
     public void setTitles(Player player) {
         player.setPlayerListHeader(ChatColor.translateAlternateColorCodes('&',
             this.header
-            .replace("{playerCount}", "" + Bukkit.getOnlinePlayers().size())
+            .replace("{playerCount}", "" + (Bukkit.getOnlinePlayers().size() - EssentialsPermission.getVanishedPlayers().size()))
             .replace("{maxPlayers}", "" + Bukkit.getMaxPlayers())
         ));
         

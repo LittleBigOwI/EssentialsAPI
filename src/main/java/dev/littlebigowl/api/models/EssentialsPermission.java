@@ -57,12 +57,24 @@ public class EssentialsPermission {
         return vanished.contains(player.getUniqueId());
     }
 
+    public static boolean isVanished(UUID uuid) {
+        return vanished.contains(uuid);
+    }
+
     public static void addVanished(Player player) {
         vanished.add(player.getUniqueId());
     }
 
+    public static void addVanished(UUID uuid) {
+        vanished.add(uuid);
+    }
+
     public static void removeVanished(Player player) {
         vanished.remove(player.getUniqueId());
+    }
+
+    public static void removeVanished(UUID uuid) {
+        vanished.remove(uuid);
     }
 
     public static HashSet<Player> getVanishedPlayers() {
