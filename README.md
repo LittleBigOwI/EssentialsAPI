@@ -10,6 +10,7 @@ A custom API for the Essentials series of plugins
 - `ScoreboardEssentials`
 - `DiscordEssentials`
 - `AreaEssentials`
+- `AdminEssentials`
 
 ## Authors
 
